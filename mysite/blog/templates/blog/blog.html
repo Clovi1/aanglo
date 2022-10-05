@@ -1,0 +1,86 @@
+{% extends 'blog/base.html' %}
+{% load sidebar_tags %}
+
+{% block content %}
+
+<!-- start page-title -->
+<section class="page-title-s2">
+    <div class="container-1310">
+        <div class="row">
+            <div class="col col-xs-12">
+                <div class="inner">
+                    <h2>{{ title }}</h2>
+                </div>
+            </div>
+        </div>
+    </div> <!-- end container-1310 -->
+</section>
+<!-- end page-title -->
+
+
+<!-- start blog-pg-section -->
+<section class="blog-s2-pg-section section-padding thaia-stk-sidebar">
+    <div class="container-1310">
+        <div class="row">
+            <div class="col col-lg-8 content">
+                <div class="blog-content">
+                    <div class="posts">
+                        {% for post in posts %}
+                        <div class="post">
+                            <div class="entry-media">
+                                <a href="{{ post.get_absolute_url }}"><img src='{{ post.image.url }}' alt="Фото"></a>
+                            </div>
+                            <div class="entry-details">
+                                <div class="author">By: <a href="#">{{ post.author }}</a></div>
+                                <h4><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h4>
+                                <ul>
+                                    <li><a href="#">5 Mins Read</a></li>
+                                    <li><a href="#">{{ post.time_create | date:"d M Y" }}</a></li>
+                                </ul>
+                                <p>{{ post.content | safe | truncatewords:15}}</p>
+                                <a href="{{ post.get_absolute_url }}" class="read-more">Read more</a>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+
+                    {% if page_obj.has_other_pages %}
+                    <div class="pagination-wrapper pagination-wrapper-left">
+                        <ul class="pg-pagination">
+                            {% if page_obj.has_previous %}
+                            <li>
+                                <a href="?page={{ page_obj.previous_page_number }}" aria-label="Previous">
+                                    <i class="fi ti-angle-left"></i>
+                                </a>
+                            </li>
+                            {% endif %}
+
+                            {% for page in paginator.page_range %}
+                            {% if page_obj.number == page %}
+                            <li class="active"><a href="#">{{ page }}</a></li>
+                            {% elif page_obj.number|add:-3 <= page and page <= page_obj.number|add:3 %}
+                            <li><a href="?page={{ page }}">{{ page }}</a></li>
+                            {% endif %}
+                            {% endfor %}
+
+                            {% if page_obj.has_next %}
+                            <li>
+                                <a href="?page={{ page_obj.next_page_number }}" aria-label="Next">
+                                    <i class="fi ti-angle-right"></i>
+                                </a>
+                            </li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="col col-lg-4">
+                {% get_sidebar %}
+            </div>
+        </div>
+    </div> <!-- end container -->
+</section>
+<!-- end blog-pg-section -->
+
+{% endblock content %}

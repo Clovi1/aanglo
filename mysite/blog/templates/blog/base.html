@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static social_tags cache %}
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="irstheme">
+
+    <title>{{ title }}</title>
+    <link rel="icon" type="image/x-icon" href="{% static 'blog/images/favicon.ico' %}">
+
+    <link href="{% static 'blog/css/themify-icons.css' %}" rel="stylesheet">
+    <link href="{% static 'blog/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'blog/css/animate.css' %}" rel="stylesheet">
+    <link href="{% static 'blog/css/owl.carousel.css' %}" rel="stylesheet">
+    <link href="{% static 'blog/css/owl.theme.css' %}" rel="stylesheet">
+    <link href="{% static 'blog/css/slick.css' %}" rel="stylesheet">
+    <link href="{% static 'blog/css/slick-theme.css' %}" rel="stylesheet">
+    <link href="{% static 'blog/css/swiper.min.css' %}" rel="stylesheet">
+    <link href="{% static 'blog/css/owl.transitions.css' %}" rel="stylesheet">
+    <link href="{% static 'blog/css/jquery.fancybox.css' %}" rel="stylesheet">
+    <link href="{% static 'blog/css/style.css' %}" rel="stylesheet">
+</head>
+
+<body>
+
+<!-- start page-wrapper -->
+<div class="page-wrapper">
+
+    <!-- start preloader -->
+    <div class="preloader">
+        <div class="lds-roller">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+    <!-- end preloader -->
+
+    <!-- Start header -->
+    <header id="header" class="site-header header-style-1">
+        <nav id="site-navigation" class="navigation navbar navbar-default">
+            <div class="container-full">
+                <div class="navbar-header">
+                    <button type="button" id="hamburger-menu" class="open-nav-btn open-btn"
+                            aria-label="open navigation" aria-controls="link-list" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="{% url 'home' %}"><img src="{% static 'blog/images/logo.png' %}" alt></a>
+                </div>
+                <div id="slide-nav" class="navbar-collapse collapse navigation-holder slide-content">
+                    <button type="button" id="close" class="close-btn close-navbar" aria-label="close navigation"><i
+                            class="ti-close"></i></button>
+                    <ul id="link-list" class="nav navbar-nav menu nav-menu">
+                        {% for m in menu %}
+                        {% if m.url_name == menu_item_selected %}
+                        <li class="current-menu-item"><a href="{% url m.url_name %}">{{m.title}}</a></li>
+                        {% else %}
+                        <li><a href="{% url m.url_name %}">{{m.title}}</a></li>
+                        {% endif %}
+                        {% endfor %}
+                    </ul>
+                </div><!-- end of nav-collapse -->
+                <div class="header-right">
+                    <div class="header-search-form-wrapper">
+                        <div class="search-area">
+                            <form>
+                                <div>
+                                    <input type="text" class="form-control" placeholder="Search">
+                                    <button type="submit"><i class="ti ti-search"></i></button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- end of container -->
+        </nav>
+    </header>
+    <!-- end of header -->
+
+    {% block content %}
+    {% endblock content %}
+
+
+    <!-- start newsletter-section -->
+    <section class="newsletter-section">
+        <div class="container-1310">
+            <div class="row">
+                <div class="col col-xs-12">
+                    <div class="newsletter-area">
+                        <div class="newsletter-inner clearfix">
+                            <div class="text">
+                                <h3>Email Newsletter</h3>
+                                <p>Enter your email and we'll keep you posted with news and updates!</p>
+                            </div>
+                            <form action="{% url 'create_email' %}" method="post">
+                                <div class="input-1">
+                                    {% csrf_token %}
+                                    {{ email_form.email }}
+                                </div>
+                                <div class="submit clearfix">
+                                    <button type="submit">Subcribe</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> <!-- end container-1310 -->
+    </section>
+    <!-- end newsletter-section -->
+
+    {% cache 600000 footer %}
+    <!-- start instagram-section -->
+    <section class="instagram-section">
+        <div class="container-full">
+            <div class="row">
+                <div class="col col-xs-12">
+                    <div class="instagram-inner">
+                        <div class="instagram-text">
+                            <h3>Follow our instagram</h3>
+                            <p>@instagram</p>
+                        </div>
+                        <div class="instagram-grids clearfix">
+                            <div class="grid">
+                                <a href="https://www.instagram.com/"><img
+                                        src="{% static 'blog/images/instagram/1.jpg' %}" alt></a>
+                            </div>
+                            <div class="grid">
+                                <a href="https://www.instagram.com/"><img
+                                        src="{% static 'blog/images/instagram/3.jpg' %}" alt></a>
+                            </div>
+                            <div class="grid">
+                                <a href="https://www.instagram.com/"><img
+                                        src="{% static 'blog/images/instagram/4.jpg' %}" alt></a>
+                            </div>
+                            <div class="grid">
+                                <a href="https://www.instagram.com/"><img
+                                        src="{% static 'blog/images/instagram/2.jpg' %}" alt></a>
+                            </div>
+                            <div class="grid">
+                                <a href="https://www.instagram.com/"><img
+                                        src="{% static 'blog/images/instagram/5.jpg' %}" alt></a>
+                            </div>
+                            <div class="grid">
+                                <a href="https://www.instagram.com/"><img
+                                        src="{% static 'blog/images/instagram/6.jpg' %}" alt></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- end instagram-section -->
+
+
+    <!-- start footer-section -->
+    <footer class="footer-section">
+        <div class="container-1310">
+            <div class="row">
+                <div class="col col-xs-12">
+                    <div class="footer-content">
+                        <div class="social">
+                            {% get_social_links as social_links %}
+                            {% for item in social_links %}
+                            <a href="{{ item.link }}"><img class="icon" src="{{ item.icon.url }}" alt=""></a>
+                            {% endfor %}
+                        </div>
+                        <div class="copyright">
+                            <img src="{% static 'blog/images/logo.png' %}" alt>
+                            <p>&copy; 2022 AAnglo , All Rights Reserved</p>
+                        </div>
+                        <div class="important-links">
+                            <ul>
+                                <li><a href="{% url 'about' %}">About me</a></li>
+                                <li><a href="{% url 'contact' %}">Contact me</a></li>
+                                <li><a href="{% url 'contact' %}">Advertising</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> <!-- end container-1310 -->
+    </footer>
+    <!-- end footer-section -->
+    {% endcache %}
+</div>
+<!-- end of page-wrapper -->
+
+
+<!-- All JavaScript files
+================================================== -->
+<script src="{% static 'blog/js/jquery.min.js' %}"></script>
+<script src="{% static 'blog/js/bootstrap.min.js' %}"></script>
+
+<!-- Plugins -->
+<script src="{% static 'blog/js/jquery-plugin-collection.js' %}"></script>
+<script src="{% static 'blog/js/navigation.js' %}"></script>
+
+<!-- Custom script -->
+<script src="{% static 'blog/js/script.js' %}"></script>
+</body>
+
+</html>

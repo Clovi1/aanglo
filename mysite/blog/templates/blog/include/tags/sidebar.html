@@ -1,0 +1,36 @@
+<div class="blog-sidebar-s2">
+    <div class="widget search-widget">
+        <h3>Search</h3>
+        <form>
+            <div>
+                <input type="text" class="form-control" placeholder="Search Post..">
+                <button type="submit"><i class="ti-search"></i></button>
+            </div>
+        </form>
+    </div>
+    <div class="widget recent-post-widget">
+        <h3>Recent post</h3>
+        <div class="posts">
+            {% for p in posts %}
+            <div class="post">
+                <div class="img-holder">
+                    <a href="{{ p.get_absolute_url }}"><img src="{{ p.image.url }}" alt></a>
+                </div>
+                <div class="details">
+                    <span class="date">{{ p.time_create | date:"d M Y" }}</span>
+                    <h4><a href="{{ p.get_absolute_url }}">{{ p.title }}</a></h4>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="widget tag-widget">
+        <h3>Tags</h3>
+        <ul>
+            {% for tag in tags %}
+            <li><a href="{{ tag.get_absolute_url }}">{{ tag }}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+

@@ -1,0 +1,189 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+<!-- start of hero -->
+<section class="hero-slider hero-style-1">
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            {% for p in posts|slice:':3' %}
+            <div class="swiper-slide">
+                <div class="slide-inner slide-bg-image" data-background="{{ p.image.url }}"
+                     data-text="<div><button>{{ p.tag }}</button><h4>{{ p.title }}</h4><ul><li>5 Mins Read</li><li>{{ p.time_create | date:'d M Y' }}</li></ul></div>">
+                    <div class="container-full">
+                        <div data-swiper-parallax="300" class="slide-author">
+                            <div>
+                                <!--                                    <img src="{{ p.image.url }}" alt="Фото">-->
+                                <img src="{% static 'blog/images/slider/author/img-1.jpg' %}" alt>
+                                <p>By: <a href="blog.html">{{ p.author }}</a></p>
+                            </div>
+                        </div>
+                        <div data-swiper-parallax="400" class="slide-title">
+                            <h2>{{ p.title | truncatewords:3 }}</h2>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div data-swiper-parallax="500" class="slide-btns">
+                            <a href="{{ p.get_absolute_url }}">
+                                Read more
+                                <svg xmlns="http://www.w3.org/2000/svg" width="33" height="13"
+                                     viewBox="0 0 33 13">
+                                    <g transform="translate(-1585 -1152)">
+                                        <g data-name="Polygon 2" transform="translate(1618 1152) rotate(90)"
+                                           fill="none">
+                                            <path d="M6.5,0,13,11H0Z" stroke="none"/>
+                                            <path
+                                                    d="M 6.5 1.965688705444336 L 1.75245189666748 10 L 11.24754810333252 10 L 6.5 1.965688705444336 M 6.5 9.5367431640625e-07 L 13 11 L 0 11 L 6.5 9.5367431640625e-07 Z"
+                                                    stroke="none" fill="#fff"/>
+                                        </g>
+                                        <rect data-name="Rectangle 46" width="22" height="1"
+                                              transform="translate(1585 1158)" fill="#fff"/>
+                                    </g>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div> <!-- end slide-inner -->
+            </div> <!-- end swiper-slide -->
+            {% endfor %}
+        </div>
+        <!-- end swiper-wrapper -->
+
+        <!-- swipper controls -->
+        <div class="swiper-cust-pagination"></div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+    </div>
+</section>
+<!-- end of hero slider -->
+
+<!-- start trending-articles-section -->
+<section class="trending-articles-section section-padding">
+    <div class="container-1310">
+        <div class="row">
+            <div class="col col-xs-12">
+                <div class="section-title">
+                    <span>Read trending posts</span>
+                    <h2>Trending articles </h2>
+
+                    <a href="{% url 'blog' %}" class="theme-btn">
+                        view more
+                        <svg xmlns="http://www.w3.org/2000/svg" width="33" height="13" viewBox="0 0 33 13">
+                            <g transform="translate(-1585 -1152)">
+                                <g data-name="Polygon 2" transform="translate(1618 1152) rotate(90)"
+                                   fill="none">
+                                    <path d="M6.5,0,13,11H0Z" stroke="none"/>
+                                    <path
+                                            d="M 6.5 1.965688705444336 L 1.75245189666748 10 L 11.24754810333252 10 L 6.5 1.965688705444336 M 6.5 9.5367431640625e-07 L 13 11 L 0 11 L 6.5 9.5367431640625e-07 Z"
+                                            stroke="none" fill="#18171C"/>
+                                </g>
+                                <rect data-name="Rectangle 46" width="22" height="1"
+                                      transform="translate(1585 1158)" fill="#18171C"/>
+                            </g>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col col-xs-12">
+                <div class="trending-articles-grids clearfix">
+                    {% for p in posts|slice:'3:6' %}
+                    <div class="grid">
+                        <div class="entry-media">
+                            <a href="{{ p.get_absolute_url }}"><img src="{{ p.image.url }}" alt></a>
+                            <button>{{ p.tag }}</button>
+                        </div>
+                        <div class="entry-details">
+                            <div class="author">By: <a href="#">{{ p.author }}</a></div>
+                            <h4><a href="{{ p.get_absolute_url }}">{{ p.title }}</a></h4>
+                            <ul>
+                                <li><a href="{{ p.get_absolute_url }}">3 Mins Read</a></li>
+                                <li><a href="{{ p.get_absolute_url }}">{{ p.time_create | date:'d M Y' }}</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div> <!-- end container -->
+</section>
+<!-- end trending-articles-section -->
+
+<!-- start recent-videos-section -->
+<section class="recent-videos-section section-padding">
+    <div class="container-1310">
+        <div class="row">
+            <div class="col col-xs-12">
+                <div class="section-title">
+                    <span>Check interesting posts</span>
+                    <h2>Interesting articles</h2>
+
+                    <a href="{% url 'blog' %}" class="theme-btn">
+                        view more
+                        <svg xmlns="http://www.w3.org/2000/svg" width="33" height="13" viewBox="0 0 33 13">
+                            <g transform="translate(-1585 -1152)">
+                                <g data-name="Polygon 2" transform="translate(1618 1152) rotate(90)"
+                                   fill="none">
+                                    <path d="M6.5,0,13,11H0Z" stroke="none"/>
+                                    <path
+                                            d="M 6.5 1.965688705444336 L 1.75245189666748 10 L 11.24754810333252 10 L 6.5 1.965688705444336 M 6.5 9.5367431640625e-07 L 13 11 L 0 11 L 6.5 9.5367431640625e-07 Z"
+                                            stroke="none" fill="#18171C"/>
+                                </g>
+                                <rect data-name="Rectangle 46" width="22" height="1"
+                                      transform="translate(1585 1158)" fill="#18171C"/>
+                            </g>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+            <div class="col col-lg-7">
+                <div class="left-post">
+                    {% for p in posts|slice:'6:7' %}
+                    <div class="post">
+                        <div class="entry-media">
+                            <a href="{{ p.get_absolute_url }}"><img src="{{ p.image.url }}" alt></a>
+                            <button>{{ p.tag }}</button>
+                        </div>
+                        <div class="entry-details">
+                            <div class="author">By: <a href="#">{{ p.author }}</a></div>
+                            <h4><a href="{{ p.get_absolute_url }}">{{ p.title }}</a></h4>
+                            <ul>
+                                <li><a href="#">3 Mins Read</a></li>
+                                <li><a href="#">{{ p.time_create | date:'d M Y' }}</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+
+            <div class="col col-lg-5">
+                <div class="right-post">
+                    {% for p in posts|slice:'7:11' %}
+                    <div class="post">
+                        <div class="entry-media">
+                            <a href="{{ p.get_absolute_url }}"><img src="{{ p.image.url }}" alt></a>
+                        </div>
+                        <div class="entry-details">
+                            <div class="author">By: <a href="#">{{ p.author }}</a></div>
+                            <h4><a href="{{ p.get_absolute_url }}">{{ p.title }}</a></h4>
+                            <ul>
+                                <li><a href="#">5 Mins Read</a></li>
+                                <li><a href="#">{{ p.time_create | date:'d M Y' }}</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div> <!-- end container-1310 -->
+</section>
+<!-- end recent-videos-section -->
+
+{% endblock content %}

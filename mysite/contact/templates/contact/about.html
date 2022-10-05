@@ -1,0 +1,38 @@
+{% extends 'blog/base.html' %}
+
+
+{% block content %}
+<!-- start page-title -->
+<section class="page-title">
+    <div class="container-1310">
+        <div class="row">
+            <div class="col col-xs-12">
+                <div class="inner">
+                    <h2>{{ title }}</h2>
+                </div>
+            </div>
+        </div>
+    </div> <!-- end container-1310 -->
+</section>
+<!-- end page-title -->
+
+<!-- start about-main-section -->
+<section class="about-main-section">
+    <h2 class="hidden">About section</h2>
+    <div class="container-1310">
+        <div class="row">
+            <div class="col col-lg-10 col-lg-offset-1">
+                <div class="main-inner">
+                    <div class="img-holder">
+                        <img src="{{ about.image.url }}" alt>
+                    </div>
+                    <div class="content">
+                        {{ about.message | safe}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> <!-- end container-1310 -->
+</section>
+<!-- end about-main-section -->
+{% endblock content %}
