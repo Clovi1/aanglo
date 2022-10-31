@@ -1,2 +1,2 @@
 # aanglo
-Пет проект блога на django
+Pet-проект блога на django
